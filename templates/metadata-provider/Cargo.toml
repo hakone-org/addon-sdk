@@ -1,0 +1,22 @@
+[package]
+name = "example-addon-metadata"
+version = "0.1.0"
+edition = "2021"
+license = "GPL-2.0-or-later"
+publish = false
+
+[workspace]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# In your own repository, use the SDK release instead of this path:
+# hakone-addon-message-v1 = { git = "https://github.com/hakone-org/addon-sdk", tag = "v1.0.0" }
+hakone-addon-message-v1 = { path = "../../message-v1" }
+
+[profile.release]
+opt-level = "s"
+lto = true
+panic = "abort"
+strip = true
